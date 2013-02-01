@@ -180,6 +180,36 @@
 
 </div><!-- #universe -->
 
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ownroof'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = false;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		//var s1 = document.createElement('script'); s1.async = false;
+        //s1.type = 'text/javascript';
+		//s1.text = ' ;';
+		//(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s1);
+		window.setTimeout(ConvertCommentCount, 2000);
+    }());
+	function ConvertCommentCount()
+	{var b=document.getElementsByTagName("A");
+		for(var f=0;f<b.length;f++)
+			if(b[f].href.indexOf("#disqus_thread")>=0)
+			{str = b[f].innerHTML;
+				var cmt = str.split(' ');
+				cnt = cmt[0][cmt[0].length-1];
+				if (cnt>1 && cnt<5 && (cmt[0]<12 || cmt[0]>14))
+					cmt[1] = cmt[1].replace("Comments","комментария");
+				cmt[1] = cmt[1].replace("Comments","комментариев");
+				cmt[1] = cmt[1].replace("Comment","комментарий");							
+				b[f].innerHTML = cmt[0]+" "+cmt[1];	}
+	}
+    </script>
 
 
 	<footer id="colophon" role="contentinfo">
