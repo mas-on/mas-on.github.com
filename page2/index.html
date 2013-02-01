@@ -366,7 +366,21 @@
         s.type = 'text/javascript';
         s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		ConvertCommentCount();
     }());
+	function ConvertCommentCount()
+	{var b=document.getElementsByTagName("A");
+		for(var f=0;f<b.length;f++)
+			if(b[f].href.indexOf("#disqus_thread")>=0)
+			{str = b[f].innerHTML;
+				var cmt = str.split(' ');
+				cnt = cmt[0][cmt[0].length-1];
+				if (cnt>1 && cnt<5 && (cmt[0]<12 || cmt[0]>14))
+					cmt[1] = cmt[1].replace("Comments","комментария");
+				cmt[1] = cmt[1].replace("Comments","комментариев");
+				cmt[1] = cmt[1].replace("Comment","комментарий");							
+				b[f].innerHTML = cmt[0]+" "+cmt[1];	}
+	}
     </script>
     
 
