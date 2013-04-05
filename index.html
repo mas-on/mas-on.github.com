@@ -38,6 +38,74 @@
 
 	<article class="post type-post status-publish format-standard hentry">
 		<header class="entry-header">
+						<h1 class="entry-title"><a href="../2013/03/22/blender-washbasin" title="Постоянная ссылка: Рисование раковины в Blender" rel="bookmark">Рисование раковины в Blender</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Опубликовано </span><a href="./2013/03/22/blender-washbasin" title="00:00" rel="bookmark"><time class="entry-date" datetime="2013-03-22T00:00:00+04:00" pubdate="">22.03.2013</time></a>	</div><!-- .entry-meta -->
+			
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+				<p>Делюсь своим опытом рисования простой модели раковины для ванной в редакторе Blender.</p>
+
+<p>Начальная форма раковины - сфера. Добавляем ее в сцену (Add-&gt;Mesh-&gt;UV Sphere). Обрежем верхнюю часть, для этого удобно перейти в вид сбоку (1 или 3) и  в режиме редактирования (Tab) в каркасном отображении (Wireframe) выделить прямоугольником (B) точки в верхней половине.
+<img src="/img/washbasin-1.jpg" alt="Этап 1" title="Этап 1" /></p>
+
+<p>Выделенные точки удаляем (X) и масштабируем половинку сферы, чтобы получить толщину. Для этого выделим оставшиеся точки (A) и экструдируем их, чтобы получить копию (E-&gt;Enter). Дальше эту копию нужно масштабировать (S) на заданную толщину. Допустим, 1.15.
+Чтобы преобразования было лучше видно, здесь удобнее перейти в сплошное отображение (Solid) и трехмерный вид - допустим, из камеры (0).
+<img src="/img/washbasin-2.jpg" alt="Этап 2" title="Этап 2" /></p>
+
+<p>Теперь, если перейти в вид сбоку (1), то заметно, что внешний край сферы поднялся выше, чем внутренний. Выровняем их. Для этого выделим все точки, лежащие на внешнем крае (Alt+правая кнопка мыши), и, не забыв перейти в режим 3D Cursor, если он не был включен, привести эти точки по оси Z к нулю относительно курсора, который находится в центре бывшей сферы (S Z 0).
+<img src="/img/washbasin-3.jpg" alt="Этап 3" title="Этап 3" />
+<img src="/img/washbasin-4.jpg" alt="Этап 4" title="Этап 4" /></p>
+
+<p>Масштабируем полученную фигуру, выделив предварительно все ее точки (A), по оси Y - допустим, на 1.1 (S Y 1.1). Потом еще раз масштабируем по оси Z - допустим на 0.8 (S Z 0.8).
+<img src="/img/washbasin-5.jpg" alt="Этап 5" title="Этап 5" /></p>
+
+<p>Теперь нужно нарисовать заднюю стенку умывальника. Перейдем в каркасный режим (Wireframe) и выделим часть сферы, которую нужно удалить.
+<img src="/img/washbasin-6.jpg" alt="Этап 6" title="Этап 6" /></p>
+
+<p>Выберем точку, по которой будем выравнивать заднюю стенку и поставим туда курсор (Shift+S-&gt;Cursor to Selected). Выделим нужный контур с помощью Alt и выровняем их по оси X (S X 0). Далее выделим внутреннее ребро задней стенки, продублируем его (Е) и выровняем по оси Z относительно курсора (S Z 0).
+<img src="/img/washbasin-7.jpg" alt="Этап 7" title="Этап 7" /></p>
+
+<p>Теперь выделим весь внешний контур задней стенки и экструдируем его на необходимую толщину по оси Х (E X). Построим грань внутри контура (F).
+<img src="/img/washbasin-8.jpg" alt="Этап 8" title="Этап 8" /></p>
+
+<p>Чтобы сделать отверстие слива, найдем центральную точку нижней части раковины. Для этого масштабируем точку в середине нижней части внутренней задней стенки по оси X до центра первоначальной сферы (Shift+S Cursor to Selected, S X 0). 
+<img src="/img/washbasin-9.jpg" alt="Этап 9" title="Этап 9" />
+<img src="/img/washbasin-10.jpg" alt="Этап 10" title="Этап 10" /></p>
+
+<p>Удалим неправильное ребро и еще два лишних, экструдируем центральную точку (E) и выравняем ее по оси Х до внутренней задней стенки  (S X 0), предварительно поставив курсор в любую точку этой стенки. Создадим недостающие ребра и грани (F).
+<img src="/img/washbasin-11.jpg" alt="Этап 11" title="Этап 11" /></p>
+
+<p>Осталось изобразить отверстие слива и сгладить форму.
+Вместо отверстия нарисуем заглушку с помощью цилиндра. Поставим курсор в нужную точку нижней части раковины и добавим цилиндр (Add-&gt;Mesh-&gt;Cylinder), уменьшив его размеры с помощью масштабирования относительно нормали (S). Затем отмасштабируем и передвинем цилиндр по оси Z (S Z и G Z).
+<img src="/img/washbasin-12.jpg" alt="Этап 12" title="Этап 12" /></p>
+
+<p>Выделим цилиндр в отдельный объект (P-&gt;Selection).
+Теперь сгладим форму раковины и заглушки с помощью кнопки Smooth в разделе Shading на закладке Object Tools.
+<img src="/img/washbasin-13.jpg" alt="Этап 13" title="Этап 13" /></p>
+
+<p>В конце удалим дублирующиеся вершины (W-&gt;Remove Doubles).</p>
+
+</div>
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
+									
+			 <a href="tag/дизайн/" rel="tag">дизайн</a></span>
+			<span class="sep"> | </span>
+			<span class="comments-link"><a href="./2013/03/22/blender-washbasin/#disqus_thread" title="Прокомментировать запись «Рисование раковины в Blender»"><span class="leave-reply">Добавить комментарий</span></a></span>
+									
+			
+					</footer><!-- #entry-meta -->
+</article><!-- #post --> 
+
+
+
+
+	<article class="post type-post status-publish format-standard hentry">
+		<header class="entry-header">
 						<h1 class="entry-title"><a href="../2013/03/08/blender1" title="Постоянная ссылка: Blender" rel="bookmark">Blender</a></h1>
 			
 						<div class="entry-meta">
@@ -256,34 +324,6 @@
 
 
 
-
-	<article class="post type-post status-publish format-standard hentry">
-		<header class="entry-header">
-						<h1 class="entry-title"><a href="../2012/07/06/inspection" title="Постоянная ссылка: Инспекция" rel="bookmark">Инспекция</a></h1>
-			
-						<div class="entry-meta">
-				<span class="sep">Опубликовано </span><a href="./2012/07/06/inspection" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-07-06T00:00:00+04:00" pubdate="">06.07.2012</time></a>	</div><!-- .entry-meta -->
-			
-					</header><!-- .entry-header -->
-
-				<div class="entry-content">
-				<p>Посмотрела на дом. Мой пятый этаж (из десяти) уже построен. В марте, ровно 4 месяца назад, строился второй. Выглядит не как на картинке, конечно - окна пока не застеклены (в договоре содержится пункт о застеклении окон и лоджий).</p>
-
-</div>
-		<footer class="entry-meta">
-												<span class="cat-links">
-				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
-									
-			 <a href="tag/застройщик/" rel="tag">застройщик</a></span>
-			<span class="sep"> | </span>
-			<span class="comments-link"><a href="./2012/07/06/inspection/#disqus_thread" title="Прокомментировать запись «Инспекция»"><span class="leave-reply">Добавить комментарий</span></a></span>
-									
-			
-					</footer><!-- #entry-meta -->
-</article><!-- #post --> 
-
-
-
 			</div><!-- #content -->
 
 
@@ -306,6 +346,8 @@
 <div id="secondary" class="widget-area" role="complementary">
 					<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Свежие записи</h3>		<ul>
 					
+					<li><a href="/2013/03/22/blender-washbasin" title="Рисование раковины в Blender">Рисование раковины в Blender</a></li>
+					
 					<li><a href="/2013/03/08/blender1" title="Blender">Blender</a></li>
 					
 					<li><a href="/2013/01/22/newprices" title="Цены">Цены</a></li>
@@ -313,8 +355,6 @@
 					<li><a href="/2013/01/12/endofbuilding" title="Вторая инспекция">Вторая инспекция</a></li>
 					
 					<li><a href="/2013/01/04/website" title="Сайт готов">Сайт готов</a></li>
-					
-					<li><a href="/2012/11/22/goodnews" title="Приятная новость">Приятная новость</a></li>
 					
 				</ul>
 		</aside>
