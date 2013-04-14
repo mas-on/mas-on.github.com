@@ -38,6 +38,42 @@
 
 	<article class="post type-post status-publish format-standard hentry">
 		<header class="entry-header">
+						<h1 class="entry-title"><a href="../2013/04/14/blender-washbasin-tap" title="Постоянная ссылка: Смеситель для умывальника в Blender" rel="bookmark">Смеситель для умывальника в Blender</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Опубликовано </span><a href="./2013/04/14/blender-washbasin-tap" title="00:00" rel="bookmark"><time class="entry-date" datetime="2013-04-14T00:00:00+04:00" pubdate="">14.04.2013</time></a>	</div><!-- .entry-meta -->
+			
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+				<p>Нарисовала в Blender смеситель для умывальника в ванной. Для стойки использовала цилиндр, для регулятора - куб, а для самого крана - кривую Безье.
+С кривой Безье встречалась впервые, поэтому вкратце напишу, как с ней обращаться.
+Сначала нужно добавить окружность Безье (Add-&gt;Curve-&gt;Circle) - это будет диаметр крана (удобнее поместить ее не на основной слой). Переименуем ее в Diameter. Потом добавим саму кривую (Add-&gt;Curve-&gt;Bezier) и укажем для нее на закладке Object Data (находится рядом с Object Modifiers, на ее значке будет нарисована кривая) в поле Bevel Object окружность Diameter. 
+<img src="/img/washbasin-tap-begin.JPG" alt="Кран" title="Кран" /></p>
+
+<p>Полученную трубку дальше можно редактировать путем поворота (R), масштабирования (S) и перемещения (G) направляющих (они показаны красными линиями) по осям, как и в предыдущем посте.</p>
+
+<p>Получилось вот такое.
+<img src="/img/washbasin-tap.JPG" alt="Результат" title="Результат" /></p>
+
+</div>
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
+									
+			 <a href="tag/дизайн/" rel="tag">дизайн</a></span>
+			<span class="sep"> | </span>
+			<span class="comments-link"><a href="./2013/04/14/blender-washbasin-tap/#disqus_thread" title="Прокомментировать запись «Смеситель для умывальника в Blender»"><span class="leave-reply">Добавить комментарий</span></a></span>
+									
+			
+					</footer><!-- #entry-meta -->
+</article><!-- #post --> 
+
+
+
+
+	<article class="post type-post status-publish format-standard hentry">
+		<header class="entry-header">
 						<h1 class="entry-title"><a href="../2013/03/22/blender-washbasin" title="Постоянная ссылка: Рисование раковины в Blender" rel="bookmark">Рисование раковины в Blender</a></h1>
 			
 						<div class="entry-meta">
@@ -282,48 +318,6 @@
 
 
 
-
-	<article class="post type-post status-publish format-standard hentry">
-		<header class="entry-header">
-						<h1 class="entry-title"><a href="../2012/07/15/paymentschedule" title="Постоянная ссылка: График платежей" rel="bookmark">График платежей</a></h1>
-			
-						<div class="entry-meta">
-				<span class="sep">Опубликовано </span><a href="./2012/07/15/paymentschedule" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-07-15T00:00:00+04:00" pubdate="">15.07.2012</time></a>	</div><!-- .entry-meta -->
-			
-					</header><!-- .entry-header -->
-
-				<div class="entry-content">
-				<p>Решила разобраться в принципе расчета графика платежей по кредиту. Когда при получении графика я попросила кредитного инспектора объяснить этот принцип, она ожидаемо сослалась на программу. И действительно, зачем им знать, как что рассчитывается, когда есть программа. Вот если бы ее еще заемщикам выдавали…
-По делу: формула самого аннуитетного (а у меня именно такие) платежа сложности не представляет. </p>
-
-<p>Вот она, собственно: </p>
-
-<pre><code>K=S*i/m/(1-(1+i/m)-k), 
-</code></pre>
-
-<p>где K - платеж, S - сумма кредита, i - годовой процент по кредиту, m - число платежных периодов в году, т. е. месяцев, k - полное количество платежных периодов. </p>
-
-<p>Дальше эта сумма делится на погашение долга и проценты за пользование кредитом. Здесь уже возникают некоторые сложности. </p>
-
-<p>Сначала я попробовала посчитать сумму процентов по годовой ставке, деленной на 12 (месяцев), но результат с графиком не сходился. Оказалось, нужно брать количество дней между платежами и делить на количество дней в году. Но здесь возникает проблема с високосным годом - в этом случае нужно сложить количество дней до конца месяца, деленное на количество дней в старом году и количество дней с начала месяца, деленное на количество дней в новом году. </p>
-
-<p>Теперь график платежей расходится на 1 копейку в январе 2017. Видимо, что-то где-то еще надо округлить. Но для примерного подсчета и планирования частичных досрочных погашений уже можно пользоваться. Проверено на новом графике после первого досрочного платежа. На нем, кстати, все суммы процентов совпадают.</p>
-
-</div>
-		<footer class="entry-meta">
-												<span class="cat-links">
-				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
-									
-			 <a href="tag/кредит/" rel="tag">кредит</a></span>
-			<span class="sep"> | </span>
-			<span class="comments-link"><a href="./2012/07/15/paymentschedule/#disqus_thread" title="Прокомментировать запись «График платежей»"><span class="leave-reply">Добавить комментарий</span></a></span>
-									
-			
-					</footer><!-- #entry-meta -->
-</article><!-- #post --> 
-
-
-
 			</div><!-- #content -->
 
 
@@ -346,6 +340,8 @@
 <div id="secondary" class="widget-area" role="complementary">
 					<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Свежие записи</h3>		<ul>
 					
+					<li><a href="/2013/04/14/blender-washbasin-tap" title="Смеситель для умывальника в Blender">Смеситель для умывальника в Blender</a></li>
+					
 					<li><a href="/2013/03/22/blender-washbasin" title="Рисование раковины в Blender">Рисование раковины в Blender</a></li>
 					
 					<li><a href="/2013/03/08/blender1" title="Blender">Blender</a></li>
@@ -353,8 +349,6 @@
 					<li><a href="/2013/01/22/newprices" title="Цены">Цены</a></li>
 					
 					<li><a href="/2013/01/12/endofbuilding" title="Вторая инспекция">Вторая инспекция</a></li>
-					
-					<li><a href="/2013/01/04/website" title="Сайт готов">Сайт готов</a></li>
 					
 				</ul>
 		</aside>
