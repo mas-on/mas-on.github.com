@@ -16,6 +16,9 @@ function Calculate()
 	var rate = Number($("#rate1").val());
 	var n=$("#creditperiod").val(); 
 
+	
+
+	
 	var header = "<tr><th>N</th><th>Дата платежа</th><th>Кредит</th><th>Проценты</th><th>Дополнительно</th><th>Остаток</th><th>Платеж</th><th>Заплачено</th><th>Всего</th></tr>";
 	var text ="";	
 	arrDate = date.split('.'); 
@@ -25,17 +28,37 @@ function Calculate()
 	var d=new Date(year,month,day); 
 	rate=rate/100;	
 	var p = CompulsoryPayment(Coef(rate,n),remainedSum); 	
-	var all_first = CalculateFirst(n,d,rate,remainedSum,p,day).all;		
-	var arrOverPay = InitArrOverPay(n); 	
-	
-	if ($("#cbSaveCookie").prop("checked")) SaveCalcCookies();
-	
-	var main = CalculateMain(n,d,rate,remainedSum,p,day,arrOverPay, false);
+	var all_first = CalculateFirst(n,d,rate,remainedSum,p,day);
+	var all = 0.0;
+	var all_pp = 0.0;
+	var bSaveCookie = $("#cbSaveCookie").prop("checked");
+	var arrOverPay = InitNumberArr(n);
+	if (bSaveCookie && CheckChangedInput(remainedSum, n, rate, date)) RemoveOverPayCookie();
+	else arrOverPay = InitArrOverPay(n); 
+	if (bSaveCookie) SaveCalcCookies();
+	for (i=1;i<=n;i++){ 
+		m = d.getMonth();
+		y = d.getFullYear();		
+		lastDay = new Date(y,m+1,0);
+		days2end = lastDay.getDate()-d.getDate();		
+		
+		d=new Date(y, m+1, day);		
+		if (d.getMonth()-m>1) d.setDate(0);
+		pp = PercentPayment(rate,remainedSum,days2end,DaysInYear(y),d.getDate(),DaysInYear(d.getFullYear()));
+		all_pp = Math.round((all_pp+pp)*100)/100;
+		if (arrOverPay[i-2]>0) p = CompulsoryPayment(Coef(rate,n-i+1),remainedSum);	
+		if (i==n) p = Math.round((remainedSum+pp)*100)/100;
+		bp = Math.round((p-pp)*100)/100; 
+		all = Math.round((all+p+Number(arrOverPay[i-1]))*100)/100;
+		remainedSum = Math.round((remainedSum-bp-arrOverPay[i-1])*100)/100;
+		text=text+AddRow(i,d,bp,pp,arrOverPay[i-1],remainedSum,p,Math.round((p+Number(arrOverPay[i-1]))*100)/100,all);			
+		}
 	
 	$("table.schedule").remove();
-	$("#result").remove();		
-	$("body").append("<div id='result'><div id='result1'>Сумма процентов: "+Format(main.all_pp)+"</div><div id='result2'>Экономия при дополнительных платежах: "+Format(Math.round((all_first-main.all)*100)/100)+"</div></div>");
-	$("body").append("<table id='schedule-table' class='schedule entry-content'>"+header+main.text+"</table>");
+	$("#result").remove();	
+	
+	$("body").append("<div id='result'><div id='result1'>Сумма процентов: "+Format(all_pp)+"</div><div id='result2'>Экономия при дополнительных платежах: "+Format(Math.round((all_first-all)*100)/100)+"</div></div>");
+	$("body").append("<table id='schedule-table' class='schedule entry-content'>"+header+text+"</table>");
 
 }
 
@@ -56,8 +79,8 @@ function CompulsoryPayment(coef,remSum){
 return Math.round(coef*remSum*100)/100;
 }
 function PercentPayment(percent,remSum,d1,y1,d2,y2){ 
-if (y1==y2) return Math.round(PercentPaymentPart(percent,remSum,d1+d2,y1)*100)/100;
-return Math.round((Math.round(PercentPaymentPart(percent,remSum,d1,y1)*100)/100+Math.round(PercentPaymentPart(percent,remSum,d2,y2)*100)/100)*100)/100;
+if (y1 == y2) return Math.round(PercentPaymentPart(percent,remSum,d1+d2,y1)*100)/100;
+else return Math.round((Math.round(PercentPaymentPart(percent,remSum,d1,y1)*100)/100+Math.round(PercentPaymentPart(percent,remSum,d2,y2)*100)/100)*100)/100;
 }
 function PercentPaymentPart(percent,remSum,d,y){
 return percent*remSum*d/y;
@@ -134,29 +157,41 @@ if (isNaN(s.value)) s.value=s.defaultValue;
 else  {s.defaultValue=s.value; Calculate();}
 }
 function CalculateFirst(n,d,rate,remainedSum,p,day){
-return CalculateMain(n,d,rate,remainedSum,p,day,InitNumberArr(n), true);
-}
-function CalculateMain(n,d,rate,remainedSum,p,day,arrOverPay, bFirst){
-var result = {};
-result.all = 0.0; result.all_pp = 0.0; result.text = ""; 
+var all = 0.0;
 for (i=1;i<=n;i++){ 
 	m = d.getMonth();
 	y = d.getFullYear();		
-	lastDay = new Date(y,m+1,0);
-	days2end = lastDay.getDate()-d.getDate();			
+	lastDay = new Date(y,m+1,0); 
+	days2end = lastDay.getDate()-d.getDate();				
 	d=new Date(y, m+1, day);		
 	if (d.getMonth()-m>1) d.setDate(0);
-	pp = PercentPayment(rate,remainedSum,days2end,DaysInYear(y),d.getDate(),DaysInYear(d.getFullYear()));	
-	if (!bFirst) result.all_pp = Math.round((result.all_pp+pp)*100)/100;
-	if (arrOverPay[i-2]>0) p = CompulsoryPayment(Coef(rate,n-i+1),remainedSum);	
+	pp = PercentPayment(rate,remainedSum,days2end,DaysInYear(y),d.getDate(),DaysInYear(d.getFullYear()));
 	if (i==n) p = Math.round((remainedSum+pp)*100)/100;
 	bp = Math.round((p-pp)*100)/100; 
-	result.all = Math.round((result.all+p+Number(arrOverPay[i-1]))*100)/100;
-	remainedSum = Math.round((remainedSum-bp-arrOverPay[i-1])*100)/100;
-	if (!bFirst) result.text=result.text+AddRow(i,d,bp,pp,arrOverPay[i-1],remainedSum,p,Math.round((p+Number(arrOverPay[i-1]))*100)/100,result.all);			
+	all = Math.round((all+p)*100)/100;
+	remainedSum = Math.round((remainedSum-bp)*100)/100;		
 	}
-return result;
-}
+return all;
+}/*
+function CalculateMain(n,d,rate,remainedSum,p,day){
+	for (i=1;i<=n;i++){ 
+		m = d.getMonth();
+		y = d.getFullYear();		
+		lastDay = new Date(y,m+1,0);
+		days2end = lastDay.getDate()-d.getDate();		
+		
+		d=new Date(y, m+1, day);		
+		if (d.getMonth()-m>1) d.setDate(0);
+		pp = PercentPayment(rate,remainedSum,days2end,DaysInYear(y),d.getDate(),DaysInYear(d.getFullYear()));
+		all_pp = Math.round((all_pp+pp)*100)/100;
+		if (arrOverPay[i-2]>0) p = CompulsoryPayment(Coef(rate,n-i+1),remainedSum);	
+		if (i==n) p = Math.round((remainedSum+pp)*100)/100;
+		bp = Math.round((p-pp)*100)/100; 
+		all = Math.round((all+p+Number(arrOverPay[i-1]))*100)/100;
+		remainedSum = Math.round((remainedSum-bp-arrOverPay[i-1])*100)/100;
+		text=text+AddRow(i,d,bp,pp,arrOverPay[i-1],remainedSum,p,Math.round((p+Number(arrOverPay[i-1]))*100)/100,all);			
+		}
+}*/
 function IsCheckedSaveCookie(){
 var b = $.cookie("SaveCookie"); 
 if (b==undefined) return false;
@@ -204,9 +239,11 @@ Calculate();
 }
 function OnBlurCalcData(s){  
 var n = s.defaultValue.length; 
-if (s.value!=s.defaultValue) {	
+if (s.value!=s.defaultValue) {alert(s.defaultValue.length);
+	
 	RemoveOverPayCookie(); 
 	Calculate();}
+//if (n ==0) s.defaultValue=s.value;
 }
 function OnFocusCalcData(s){
 s.defaultValue = s.value;
