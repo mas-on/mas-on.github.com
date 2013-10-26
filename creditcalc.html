@@ -1,0 +1,243 @@
+﻿<html>
+<head>
+<title>credit calculator</title>
+<link rel="stylesheet" type="text/css" media="all" href="style.css">
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="jquery.cookie.js"></script>
+<script type="text/javascript" language="javascript">
+
+function Calculate()
+{		
+	
+	if (!IsValid()) return;
+	
+	var date=$("#date1start").val();
+	var remainedSum = Number($("#creditsum").val());
+	var rate = Number($("#rate1").val());
+	var n=$("#creditperiod").val(); 
+
+	var header = "<tr><th>N</th><th>Дата платежа</th><th>Кредит</th><th>Проценты</th><th>Дополнительно</th><th>Остаток</th><th>Платеж</th><th>Заплачено</th><th>Всего</th></tr>";
+	var text ="";	
+	arrDate = date.split('.'); 
+	var day = Number(arrDate[0]);
+	var month = Number(arrDate[1])-1;
+	var year = Number(arrDate[2]); 	
+	var d=new Date(year,month,day); 
+	rate=rate/100;	
+	var p = CompulsoryPayment(Coef(rate,n),remainedSum); 	
+	var all_first = CalculateFirst(n,d,rate,remainedSum,p,day).all;		
+	var arrOverPay = InitArrOverPay(n); 	
+	
+	if ($("#cbSaveCookie").prop("checked")) SaveCalcCookies();
+	
+	var main = CalculateMain(n,d,rate,remainedSum,p,day,arrOverPay, false);
+	
+	$("table.schedule").remove();
+	$("#result").remove();		
+	$("body").append("<div id='result'><div id='result1'>Сумма процентов: "+Format(main.all_pp)+"</div><div id='result2'>Экономия при дополнительных платежах: "+Format(Math.round((all_first-main.all)*100)/100)+"</div></div>");
+	$("body").append("<table id='schedule-table' class='schedule entry-content'>"+header+main.text+"</table>");
+
+}
+
+function AddZero(num){	
+if (num/10<1) return '0'+num;
+else return num;
+}
+function FormatDateString(d) {
+ return AddZero(d.getDate())+'.'+AddZero(d.getMonth()+1)+'.'+d.getFullYear();
+}
+function DaysInYear(y) {
+return (y % 4)>0 ? 365 : 366;
+}
+function Coef(percent, remMonths){
+return percent/12/(1-Math.pow(1+percent/12,-remMonths));
+}
+function CompulsoryPayment(coef,remSum){
+return Math.round(coef*remSum*100)/100;
+}
+function PercentPayment(percent,remSum,d1,y1,d2,y2){ 
+if (y1==y2) return Math.round(PercentPaymentPart(percent,remSum,d1+d2,y1)*100)/100;
+return Math.round((Math.round(PercentPaymentPart(percent,remSum,d1,y1)*100)/100+Math.round(PercentPaymentPart(percent,remSum,d2,y2)*100)/100)*100)/100;
+}
+function PercentPaymentPart(percent,remSum,d,y){
+return percent*remSum*d/y;
+}
+function AddRow(rowNum,date,bodyPayment,percentPayment,overPayment,remSum,payment,fullPayment,allPaid){
+c = (rowNum%2>0)?"odd" : "even";
+return "<tr class='"+c+"'><td>"+rowNum+"</td><td>"+FormatDateString(date)+"</td><td>"+Format(bodyPayment)+"</td><td>"+Format(percentPayment)+"</td><td><input class='short-input' id='o"+rowNum+"'  value='"+Format(overPayment)+"' onblur='OnBlurOverPay(this);'></td><td>"+Format(remSum)+"</td><td>"+Format(payment)+"</td><td>"+Format(fullPayment)+"</td><td>"+Format(allPaid)+"</td></tr>"
+}
+function Format(money){
+str=String(money); 
+arr = str.split('.');
+str += (arr.length>1)? ((arr[1].length<2)? '0' : '') : '.00';
+return str.replace(/([0-9])(?=([0-9]{3})+(?![0-9]))/g, "$1 ") 
+}
+function IsNumberValid(){
+var res = true;
+var $field = $(".valid-number");
+for (var i=0;res == true && i<$field.size();i++) { if(isNaN($field[i].value))	res = false;}	
+if (res) { ToggleError(""); return true;}
+else { ToggleError("Невозможно начать расчет. Введите число!"); return false;}
+}
+function IsDateValid(){
+var res = true;
+var $field = $(".valid-date"); 
+for (var i=0;res == true && i<$field.size();i++) { if(!validDate($field[i]))	{res = false; }}	
+if (res) { ToggleError(""); return true;}
+else { ToggleError("Невозможно начать расчет. Введите дату в формате дд.мм.гггг!"); return false;}
+}
+function IsRequiredValid(){
+var res = true;
+var $field = $(".valid-required");
+for (var i=0;res == true && i<$field.size();i++) {if($field[i].value.length == 0) res = false;}
+if (res) { ToggleError(""); return true;}
+else { ToggleError("Невозможно начать расчет. Заполните пустые поля!"); return false;}
+}
+function ToggleError(msg){
+var $e =$("#error"); 
+if (msg.length!=$e.text().length)
+$e.toggleClass("visible invisible");
+$e.text(msg);
+}
+function validDate(s){ 
+var x = /(\d{1,2})\.(\d{1,2})\.(\d{4})/.exec(s.value); 
+if (x == null || x.length<4) return false;
+x[2] -= 1;
+var d = new Date(x[3],x[2],x[1]);
+if ((x[3] == d.getFullYear()) && (x[2] == d.getMonth()) && (x[1] == d.getDate())) {s.value = FormatDateString(d); return true;}
+return false;
+}
+function IsValid(){
+ if (IsRequiredValid() && IsNumberValid() && IsDateValid()) return true;
+ $("table.schedule").remove();
+ return false;
+}
+function InitNumberArr(n){
+var arr = new Array(n); 
+for (var i=0;i<n;i++) {arr[i]=0.0;} 
+return arr;
+}
+function InitArrOverPay(n){
+var arr = InitNumberArr(n); 
+if ($("table.schedule").length>0){ 
+	var $arr = $("table.schedule input");
+	for (var i=0;i<$arr.size();i++) arr[i] = Number($arr[i].value.replace(' ',''));}
+else if ($.cookie('arrOverPay') != undefined) arr =$.cookie('arrOverPay').replace(' ','').split(','); 
+return arr;
+}
+function CheckChangedInput(sum, period, rate, start){
+if ($.cookie("creditsum")==sum && $.cookie("creditperiod")==period && $.cookie("rate1")==rate && $.cookie("date1start")==start) return false;
+return true;	
+}
+function OnBlurOverPay(s){ 
+if (isNaN(s.value)) s.value=s.defaultValue;
+else  {s.defaultValue=s.value; Calculate();}
+}
+function CalculateFirst(n,d,rate,remainedSum,p,day){
+return CalculateMain(n,d,rate,remainedSum,p,day,InitNumberArr(n), true);
+}
+function CalculateMain(n,d,rate,remainedSum,p,day,arrOverPay, bFirst){
+var result = {};
+result.all = 0.0; result.all_pp = 0.0; result.text = ""; 
+for (i=1;i<=n;i++){ 
+	m = d.getMonth();
+	y = d.getFullYear();		
+	lastDay = new Date(y,m+1,0);
+	days2end = lastDay.getDate()-d.getDate();			
+	d=new Date(y, m+1, day);		
+	if (d.getMonth()-m>1) d.setDate(0);
+	pp = PercentPayment(rate,remainedSum,days2end,DaysInYear(y),d.getDate(),DaysInYear(d.getFullYear()));	
+	if (!bFirst) result.all_pp = Math.round((result.all_pp+pp)*100)/100;
+	if (arrOverPay[i-2]>0) p = CompulsoryPayment(Coef(rate,n-i+1),remainedSum);	
+	if (i==n) p = Math.round((remainedSum+pp)*100)/100;
+	bp = Math.round((p-pp)*100)/100; 
+	result.all = Math.round((result.all+p+Number(arrOverPay[i-1]))*100)/100;
+	remainedSum = Math.round((remainedSum-bp-arrOverPay[i-1])*100)/100;
+	if (!bFirst) result.text=result.text+AddRow(i,d,bp,pp,arrOverPay[i-1],remainedSum,p,Math.round((p+Number(arrOverPay[i-1]))*100)/100,result.all);			
+	}
+return result;
+}
+function IsCheckedSaveCookie(){
+var b = $.cookie("SaveCookie"); 
+if (b==undefined) return false;
+return (b=="true") ? true : false;
+}
+function OnSaveCookie(){
+var cb = $("#cbSaveCookie");
+if (cb.prop("checked")) {SaveCalcCookies();}
+else { RemoveCalcCookies(); }
+$.cookie("SaveCookie",cb.prop("checked"), {expires: 365});
+}
+function RemoveCalcCookies(){
+RemoveOverPayCookie();
+$.removeCookie("creditsum");
+$.removeCookie("creditperiod");	
+$.removeCookie("rate1");
+$.removeCookie("date1start");
+return true;
+}
+function RemoveOverPayCookie(){
+$.removeCookie("arrOverPay");
+var $arr = $("table.schedule input");
+for (var i=0;i<$arr.size();i++) if (Number($arr[i].value.replace(' ',''))>0) $arr[i].value=0;
+return true;
+}
+function SaveCalcCookies(){
+var n=$("#creditperiod").val(); 
+$.cookie("creditperiod",n, {expires: 365});	
+$.cookie("creditsum", Number($("#creditsum").val()), {expires: 365});
+$.cookie("rate1", Number($("#rate1").val()), {expires: 365});
+$.cookie("date1start",$("#date1start").val(), {expires: 365}); 
+if ($("table.schedule").length>0) $.cookie('arrOverPay',InitArrOverPay(n),{ expires: 365 });
+return true;
+}
+function InitFields() {
+var b = IsCheckedSaveCookie(); 
+if (b) {
+$("#creditperiod").val($.cookie("creditperiod"));	
+$("#creditsum").val($.cookie("creditsum"));
+$("#rate1").val($.cookie("rate1"));
+$("#date1start").val($.cookie("date1start"));
+}
+$("#cbSaveCookie").prop("checked",b); 
+Calculate();
+}
+function OnBlurCalcData(s){  
+var n = s.defaultValue.length; 
+if (s.value!=s.defaultValue) {	
+	RemoveOverPayCookie(); 
+	Calculate();}
+}
+function OnFocusCalcData(s){
+s.defaultValue = s.value;
+}
+
+</script>
+</head>
+<body class="software" onload="InitFields();">
+<div class="entry-content">
+<p>Расчет аннуитетных платежей по кредиту Сбербанка с учетом частичных досрочных погашений.</p>
+
+<table class="condition">
+	<tr>
+		<td>Сумма кредита:</td>
+		<td><input id="creditsum" name="creditsum" type="text" class="valid-required valid-number short-input calc-data" onblur="OnBlurCalcData(this);" onfocus="OnFocusCalcData(this);"/></td>
+		<td>Срок кредита:</td>
+		<td><input id="creditperiod" name="creditperiod" type="text" class="valid-required valid-number short-input calc-data" onblur="OnBlurCalcData(this);" onfocus="OnFocusCalcData(this);" /> мес.</td>
+	</tr>
+	<tr>
+		<td>Годовая процентная ставка:</td>
+		<td><input id="rate1" name="rate1" type="text" class="valid-required valid-number short-input calc-data" onblur="OnBlurCalcData(this);" onfocus="OnFocusCalcData(this);"/> %</td>
+		<td>Начало выплат:</td>
+		<td><input id="date1start" name="date1start" type="text" class="valid-required valid-date short-input calc-data" onblur="OnBlurCalcData(this);" onfocus="OnFocusCalcData(this);" /></td>	
+	</tr>
+</table>
+<p class="invisible">Здесь потом будет кнопка добавления ставки</p>
+<div id="divSaveCookie">
+<input type="checkbox" id="cbSaveCookie" onclick="OnSaveCookie();" >Сохранять расчет</input></div>
+<input type="submit" class="invisible" id="btncalc" value="РАССЧИТАТЬ" onclick="Calculate();"></input>
+<div id="error" class="invisible"></div>
+</div>
+
+</body>
+</html>
