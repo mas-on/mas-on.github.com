@@ -38,6 +38,113 @@
 
 	<article class="post type-post status-publish format-standard hentry">
 		<header class="entry-header">
+						<h1 class="entry-title"><a href="../2012/09/06/mistake" title="Постоянная ссылка: Нашла ошибку в расчете" rel="bookmark">Нашла ошибку в расчете</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Опубликовано </span><a href="./2012/09/06/mistake" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-09-06T00:00:00+04:00" pubdate="">06.09.2012</time></a>	</div><!-- .entry-meta -->
+			
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+				<p>После второго досрочного платежа различие в графиках достигло трех копеек, и я решила все-таки с этим разобраться. После некоторого времени бесполезных поисков наткнулась на одном из сайтов на ремарку, что если период между платежами находится на стыке високосного и невисокосного годов, то проценты рассчитываются отдельно за обычный и отдельно за високосный год. </p>
+
+<p>Соответственно, правильная формула расчета процентов по кредиту для этого случая такая: </p>
+
+<pre><code>П=i*O*К1*Г1+i*O*К2*Г2, 
+</code></pre>
+
+<p>где П - часть платежа, уходящая на выплату процентов, i - годовая процентная ставка, О - остаток долга, К1 - количество дней в периоде, приходящееся на старый год, Г1 - количество дней в старом году, К2 - количество дней в периоде, приходящееся на новый год, Г1 - количество дней в новом году. </p>
+
+<p>Каждое слагаемое округляется до двух знаков после запятой отдельно. Теперь все копейки сходятся.</p>
+
+</div>
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
+									
+			 <a href="tag/кредит/" rel="tag">кредит</a></span>
+			<span class="sep"> | </span>
+			<span class="comments-link"><a href="./2012/09/06/mistake/#disqus_thread" title="Прокомментировать запись «Нашла ошибку в расчете»"><span class="leave-reply">Добавить комментарий</span></a></span>
+									
+			
+					</footer><!-- #entry-meta -->
+</article><!-- #post --> 
+
+
+
+
+	<article class="post type-post status-publish format-standard hentry">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="../2012/07/15/paymentschedule" title="Постоянная ссылка: График платежей" rel="bookmark">График платежей</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Опубликовано </span><a href="./2012/07/15/paymentschedule" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-07-15T00:00:00+04:00" pubdate="">15.07.2012</time></a>	</div><!-- .entry-meta -->
+			
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+				<p>Решила разобраться в принципе расчета графика платежей по кредиту. Когда при получении графика я попросила кредитного инспектора объяснить этот принцип, она ожидаемо сослалась на программу. И действительно, зачем им знать, как что рассчитывается, когда есть программа. Вот если бы ее еще заемщикам выдавали…
+По делу: формула самого аннуитетного (а у меня именно такие) платежа сложности не представляет. </p>
+
+<p>Вот она, собственно: </p>
+
+<pre><code>K=S*i/m/(1-(1+i/m)-k), 
+</code></pre>
+
+<p>где K - платеж, S - сумма кредита, i - годовой процент по кредиту, m - число платежных периодов в году, т. е. месяцев, k - полное количество платежных периодов. </p>
+
+<p>Дальше эта сумма делится на погашение долга и проценты за пользование кредитом. Здесь уже возникают некоторые сложности. </p>
+
+<p>Сначала я попробовала посчитать сумму процентов по годовой ставке, деленной на 12 (месяцев), но результат с графиком не сходился. Оказалось, нужно брать количество дней между платежами и делить на количество дней в году. Но здесь возникает проблема с високосным годом - в этом случае нужно сложить количество дней до конца месяца, деленное на количество дней в старом году и количество дней с начала месяца, деленное на количество дней в новом году. </p>
+
+<p>Теперь график платежей расходится на 1 копейку в январе 2017. Видимо, что-то где-то еще надо округлить. Но для примерного подсчета и планирования частичных досрочных погашений уже можно пользоваться. Проверено на новом графике после первого досрочного платежа. На нем, кстати, все суммы процентов совпадают.</p>
+
+</div>
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
+									
+			 <a href="tag/кредит/" rel="tag">кредит</a></span>
+			<span class="sep"> | </span>
+			<span class="comments-link"><a href="./2012/07/15/paymentschedule/#disqus_thread" title="Прокомментировать запись «График платежей»"><span class="leave-reply">Добавить комментарий</span></a></span>
+									
+			
+					</footer><!-- #entry-meta -->
+</article><!-- #post --> 
+
+
+
+
+	<article class="post type-post status-publish format-standard hentry">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="../2012/07/06/inspection" title="Постоянная ссылка: Инспекция" rel="bookmark">Инспекция</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Опубликовано </span><a href="./2012/07/06/inspection" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-07-06T00:00:00+04:00" pubdate="">06.07.2012</time></a>	</div><!-- .entry-meta -->
+			
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+				<p>Посмотрела на дом. Мой пятый этаж (из десяти) уже построен. В марте, ровно 4 месяца назад, строился второй. Выглядит не как на картинке, конечно - окна пока не застеклены (в договоре содержится пункт о застеклении окон и лоджий).</p>
+
+</div>
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
+									
+			 <a href="tag/застройщик/" rel="tag">застройщик</a></span>
+			<span class="sep"> | </span>
+			<span class="comments-link"><a href="./2012/07/06/inspection/#disqus_thread" title="Прокомментировать запись «Инспекция»"><span class="leave-reply">Добавить комментарий</span></a></span>
+									
+			
+					</footer><!-- #entry-meta -->
+</article><!-- #post --> 
+
+
+
+
+	<article class="post type-post status-publish format-standard hentry">
+		<header class="entry-header">
 						<h1 class="entry-title"><a href="../2012/05/11/creditreceiption" title="Постоянная ссылка: Получение кредита" rel="bookmark">Получение кредита</a></h1>
 			
 						<div class="entry-meta">
@@ -208,102 +315,6 @@
 
 
 
-
-	<article class="post type-post status-publish format-standard hentry">
-		<header class="entry-header">
-						<h1 class="entry-title"><a href="../2012/04/27/preliminarycontractchecking" title="Постоянная ссылка: Проверка предварительного договора" rel="bookmark">Проверка предварительного договора</a></h1>
-			
-						<div class="entry-meta">
-				<span class="sep">Опубликовано </span><a href="./2012/04/27/preliminarycontractchecking" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-04-27T00:00:00+04:00" pubdate="">27.04.2012</time></a>	</div><!-- .entry-meta -->
-			
-					</header><!-- .entry-header -->
-
-				<div class="entry-content">
-				<p>Позвонила кредитный инспектор. Юристы банка проверили предварительный договор. Кредитный договор предложили подписать на следующий день. Я согласилась.</p>
-
-</div>
-		<footer class="entry-meta">
-												<span class="cat-links">
-				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
-									
-			 <a href="tag/кредит/" rel="tag">кредит</a></span>
-			<span class="sep"> | </span>
-			<span class="comments-link"><a href="./2012/04/27/preliminarycontractchecking/#disqus_thread" title="Прокомментировать запись «Проверка предварительного договора»"><span class="leave-reply">Добавить комментарий</span></a></span>
-									
-			
-					</footer><!-- #entry-meta -->
-</article><!-- #post --> 
-
-
-
-
-	<article class="post type-post status-publish format-standard hentry">
-		<header class="entry-header">
-						<h1 class="entry-title"><a href="../2012/04/25/preliminarycontractsigning" title="Постоянная ссылка: Подписание предварительного договора" rel="bookmark">Подписание предварительного договора</a></h1>
-			
-						<div class="entry-meta">
-				<span class="sep">Опубликовано </span><a href="./2012/04/25/preliminarycontractsigning" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-04-25T00:00:00+04:00" pubdate="">25.04.2012</time></a>	</div><!-- .entry-meta -->
-			
-					</header><!-- .entry-header -->
-
-				<div class="entry-content">
-				<p>Позвонили, подписала предварительный договор и отнесла его в банк. </p>
-
-<p>Договор датирован 24.04.2012. Основной договор получается путем убирания из предварительного слова “предварительный” в названии и условия о том, что “настоящий договор является предварительным” и предусматривает заключение основного договора в течение 30 календарных дней. </p>
-
-<p>В договоре указывается, что оплата стоимости квартиры осуществляется частично за счет собственных средств (которые я должна внести на расчетный счет застройщика до 30.05.2012) и частично за счет средств банковского кредита (которые банк должен перечислить до 31.05.2012, но не ранее дня гос. регистрации договора в Управлении Федеральной службы государственной регистрации, кадастра и картографии по области). </p>
-
-<p>Я предполагала, что поскольку договор предварительный, то он может отличаться от основного и назвала округленную (немного меньшую, чем реальная) сумму своего первоначального взноса. Однако оказалось, что банк составляет кредитный договор на основе этого предварительного и поэтому суммы должны совпадать. Затягивать время переоформлением предварительного договора не хотелось и поэтому я решила оставшиеся деньги перечислить банку в качестве взноса при досрочном частичном погашении в следующем месяце. </p>
-
-<p>Кредитный инспектор пообещала позвонить после проверки договора юридическим отделом.</p>
-
-<p><em>Грабли: говорите застройщику реальную сумму первоначального взноса.</em></p>
-
-</div>
-		<footer class="entry-meta">
-												<span class="cat-links">
-				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
-									
-			 <a href="tag/кредит/" rel="tag">кредит</a>, <a href="tag/застройщик/" rel="tag">застройщик</a></span>
-			<span class="sep"> | </span>
-			<span class="comments-link"><a href="./2012/04/25/preliminarycontractsigning/#disqus_thread" title="Прокомментировать запись «Подписание предварительного договора»"><span class="leave-reply">Добавить комментарий</span></a></span>
-									
-			
-					</footer><!-- #entry-meta -->
-</article><!-- #post --> 
-
-
-
-
-	<article class="post type-post status-publish format-standard hentry">
-		<header class="entry-header">
-						<h1 class="entry-title"><a href="../2012/04/24/preliminarycontract" title="Постоянная ссылка: Заключение предварительного договора долевого участия в строительстве" rel="bookmark">Заключение предварительного договора долевого участия в строительстве</a></h1>
-			
-						<div class="entry-meta">
-				<span class="sep">Опубликовано </span><a href="./2012/04/24/preliminarycontract" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-04-24T00:00:00+04:00" pubdate="">24.04.2012</time></a>	</div><!-- .entry-meta -->
-			
-					</header><!-- .entry-header -->
-
-				<div class="entry-content">
-				<p>Сходила в офис застройщика. Оказалось, что те две квартиры уже проданы. Пришлось покупать по более высокой цене. Хотя вообще выбор еще был и можно было бы взять вариант подешевле, но менее удобный в других отношениях. Пообещали позвонить через один-два дня и пригласить на подписание предварительного договора.</p>
-
-<p><em>Грабли: предварительно бронируйте квартиру, если застройщик допускает это.</em></p>
-
-</div>
-		<footer class="entry-meta">
-												<span class="cat-links">
-				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
-									
-			 <a href="tag/выбор/" rel="tag">выбор</a>, <a href="tag/застройщик/" rel="tag">застройщик</a></span>
-			<span class="sep"> | </span>
-			<span class="comments-link"><a href="./2012/04/24/preliminarycontract/#disqus_thread" title="Прокомментировать запись «Заключение предварительного договора долевого участия в строительстве»"><span class="leave-reply">Добавить комментарий</span></a></span>
-									
-			
-					</footer><!-- #entry-meta -->
-</article><!-- #post --> 
-
-
-
 			</div><!-- #content -->
 
 
@@ -330,15 +341,15 @@
 <div id="secondary" class="widget-area" role="complementary">
 					<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Свежие записи</h3>		<ul>
 					
+					<li><a href="/2014/03/09/tile-seams-kitchen" title="Затирка швов плитки в кухне">Затирка швов плитки в кухне</a></li>
+					
+					<li><a href="/2014/03/07/ceiling-3rd-colored" title="Окраска потолка">Окраска потолка</a></li>
+					
+					<li><a href="/2014/02/28/repair-floor-bathroom" title="Ремонт цементной стяжки">Ремонт цементной стяжки</a></li>
+					
 					<li><a href="/2014/02/16/ceramic-tile-kitchen" title="Укладывание напольной плитки в кухне">Укладывание напольной плитки в кухне</a></li>
 					
 					<li><a href="/2014/02/10/rate-reduction" title="Снижение ставки по кредиту">Снижение ставки по кредиту</a></li>
-					
-					<li><a href="/2014/01/28/tax-return-2013" title="Декларация-2013">Декларация-2013</a></li>
-					
-					<li><a href="/2014/01/25/waterproofing-kitchen" title="Гидроизоляция на кухне">Гидроизоляция на кухне</a></li>
-					
-					<li><a href="/2014/01/21/insurance" title="Страхование ипотеки">Страхование ипотеки</a></li>
 					
 				</ul>
 		</aside>

@@ -38,6 +38,139 @@
 
 	<article class="post type-post status-publish format-standard hentry">
 		<header class="entry-header">
+						<h1 class="entry-title"><a href="../2013/07/05/inspection" title="Постоянная ссылка: Третья инспекция" rel="bookmark">Третья инспекция</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Опубликовано </span><a href="./2013/07/05/inspection" title="00:00" rel="bookmark"><time class="entry-date" datetime="2013-07-05T00:00:00+04:00" pubdate="">05.07.2013</time></a>	</div><!-- .entry-meta -->
+			
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+				<p>Дом теперь планируют сдать в октябре (раньше в качестве срока сдачи указывали 3 квартал).
+Сейчас идут внутренние работы, но внутрь я не заходила. А внешне - делают подложку для асфальта во дворе. Еще внешний взгляд показал, что почему-то как раз в моей квартире не поставлена наружная решетка вентиляции. Надо будет не забыть проконтролировать этот момент.</p>
+
+</div>
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
+									
+			 <a href="tag/застройщик/" rel="tag">застройщик</a></span>
+			<span class="sep"> | </span>
+			<span class="comments-link"><a href="./2013/07/05/inspection/#disqus_thread" title="Прокомментировать запись «Третья инспекция»"><span class="leave-reply">Добавить комментарий</span></a></span>
+									
+			
+					</footer><!-- #entry-meta -->
+</article><!-- #post --> 
+
+
+
+
+	<article class="post type-post status-publish format-standard hentry">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="../2013/04/14/blender-washbasin-tap" title="Постоянная ссылка: Смеситель для умывальника в Blender" rel="bookmark">Смеситель для умывальника в Blender</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Опубликовано </span><a href="./2013/04/14/blender-washbasin-tap" title="00:00" rel="bookmark"><time class="entry-date" datetime="2013-04-14T00:00:00+04:00" pubdate="">14.04.2013</time></a>	</div><!-- .entry-meta -->
+			
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+				<p>Нарисовала в Blender смеситель для умывальника в ванной. Для стойки использовала цилиндр, для регулятора - куб, а для самого крана - кривую Безье.
+С кривой Безье встречалась впервые, поэтому вкратце напишу, как с ней обращаться.
+Сначала нужно добавить окружность Безье (Add-&gt;Curve-&gt;Circle) - это будет диаметр крана (удобнее поместить ее не на основной слой). Переименуем ее в Diameter. Потом добавим саму кривую (Add-&gt;Curve-&gt;Bezier) и укажем для нее на закладке Object Data (находится рядом с Object Modifiers, на ее значке будет нарисована кривая) в поле Bevel Object окружность Diameter. 
+<img src="/img/washbasin-tap-begin.JPG" alt="Кран" title="Кран" /></p>
+
+<p>Полученную трубку дальше можно редактировать путем поворота (R), масштабирования (S) и перемещения (G) направляющих (они показаны красными линиями) по осям, как и в <a href="/2013/03/22/blender-washbasin">предыдущем посте</a>.</p>
+
+<p>Получилось вот такое.
+<img src="/img/washbasin-tap.JPG" alt="Результат" title="Результат" /></p>
+
+</div>
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
+									
+			 <a href="tag/дизайн/" rel="tag">дизайн</a></span>
+			<span class="sep"> | </span>
+			<span class="comments-link"><a href="./2013/04/14/blender-washbasin-tap/#disqus_thread" title="Прокомментировать запись «Смеситель для умывальника в Blender»"><span class="leave-reply">Добавить комментарий</span></a></span>
+									
+			
+					</footer><!-- #entry-meta -->
+</article><!-- #post --> 
+
+
+
+
+	<article class="post type-post status-publish format-standard hentry">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="../2013/03/22/blender-washbasin" title="Постоянная ссылка: Рисование раковины в Blender" rel="bookmark">Рисование раковины в Blender</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Опубликовано </span><a href="./2013/03/22/blender-washbasin" title="00:00" rel="bookmark"><time class="entry-date" datetime="2013-03-22T00:00:00+04:00" pubdate="">22.03.2013</time></a>	</div><!-- .entry-meta -->
+			
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+				<p>Делюсь своим опытом рисования простой модели раковины для ванной в редакторе Blender.</p>
+
+<p>Начальная форма раковины - сфера. Добавляем ее в сцену (Add-&gt;Mesh-&gt;UV Sphere). Обрежем верхнюю часть, для этого удобно перейти в вид сбоку (1 или 3) и  в режиме редактирования (Tab) в каркасном отображении (Wireframe) выделить прямоугольником (B) точки в верхней половине.
+<img src="/img/washbasin-1.JPG" alt="Этап 1" title="Этап 1" /></p>
+
+<p>Выделенные точки удаляем (X) и масштабируем половинку сферы, чтобы получить толщину. Для этого выделим оставшиеся точки (A) и экструдируем их, чтобы получить копию (E-&gt;Enter). Дальше эту копию нужно масштабировать (S) на заданную толщину. Допустим, 1.15.
+Чтобы преобразования было лучше видно, здесь удобнее перейти в сплошное отображение (Solid) и трехмерный вид - допустим, из камеры (0).
+<img src="/img/washbasin-2.JPG" alt="Этап 2" title="Этап 2" /></p>
+
+<p>Теперь, если перейти в вид сбоку (1), то заметно, что внешний край сферы поднялся выше, чем внутренний. Выровняем их. Для этого выделим все точки, лежащие на внешнем крае (Alt+правая кнопка мыши), и, не забыв перейти в режим 3D Cursor, если он не был включен, привести эти точки по оси Z к нулю относительно курсора, который находится в центре бывшей сферы (S Z 0).
+<img src="/img/washbasin-3.JPG" alt="Этап 3" title="Этап 3" />
+<img src="/img/washbasin-4.JPG" alt="Этап 4" title="Этап 4" /></p>
+
+<p>Масштабируем полученную фигуру, выделив предварительно все ее точки (A), по оси Y - допустим, на 1.1 (S Y 1.1). Потом еще раз масштабируем по оси Z - допустим на 0.8 (S Z 0.8).
+<img src="/img/washbasin-5.JPG" alt="Этап 5" title="Этап 5" /></p>
+
+<p>Теперь нужно нарисовать заднюю стенку умывальника. Перейдем в каркасный режим (Wireframe) и выделим часть сферы, которую нужно удалить.
+<img src="/img/washbasin-6.JPG" alt="Этап 6" title="Этап 6" /></p>
+
+<p>Выберем точку, по которой будем выравнивать заднюю стенку и поставим туда курсор (Shift+S-&gt;Cursor to Selected). Выделим нужный контур с помощью Alt и выровняем их по оси X (S X 0). Далее выделим внутреннее ребро задней стенки, продублируем его (Е) и выровняем по оси Z относительно курсора (S Z 0).
+<img src="/img/washbasin-7.JPG" alt="Этап 7" title="Этап 7" /></p>
+
+<p>Теперь выделим весь внешний контур задней стенки и экструдируем его на необходимую толщину по оси Х (E X). Построим грань внутри контура (F).
+<img src="/img/washbasin-8.JPG" alt="Этап 8" title="Этап 8" /></p>
+
+<p>Чтобы сделать отверстие слива, найдем центральную точку нижней части раковины. Для этого масштабируем точку в середине нижней части внутренней задней стенки по оси X до центра первоначальной сферы (Shift+S Cursor to Selected, S X 0). 
+<img src="/img/washbasin-9.JPG" alt="Этап 9" title="Этап 9" />
+<img src="/img/washbasin-10.JPG" alt="Этап 10" title="Этап 10" /></p>
+
+<p>Удалим неправильное ребро и еще два лишних, экструдируем центральную точку (E) и выравняем ее по оси Х до внутренней задней стенки  (S X 0), предварительно поставив курсор в любую точку этой стенки. Создадим недостающие ребра и грани (F).
+<img src="/img/washbasin-11.JPG" alt="Этап 11" title="Этап 11" /></p>
+
+<p>Осталось изобразить отверстие слива и сгладить форму.
+Вместо отверстия нарисуем заглушку с помощью цилиндра. Поставим курсор в нужную точку нижней части раковины и добавим цилиндр (Add-&gt;Mesh-&gt;Cylinder), уменьшив его размеры с помощью масштабирования относительно нормали (S). Затем отмасштабируем и передвинем цилиндр по оси Z (S Z и G Z).
+<img src="/img/washbasin-12.JPG" alt="Этап 12" title="Этап 12" /></p>
+
+<p>Выделим цилиндр в отдельный объект (P-&gt;Selection).
+Теперь сгладим форму раковины и заглушки с помощью кнопки Smooth в разделе Shading на закладке Object Tools.
+<img src="/img/washbasin-13.JPG" alt="Этап 13" title="Этап 13" /></p>
+
+<p>В конце удалим дублирующиеся вершины (W-&gt;Remove Doubles).</p>
+
+</div>
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
+									
+			 <a href="tag/дизайн/" rel="tag">дизайн</a></span>
+			<span class="sep"> | </span>
+			<span class="comments-link"><a href="./2013/03/22/blender-washbasin/#disqus_thread" title="Прокомментировать запись «Рисование раковины в Blender»"><span class="leave-reply">Добавить комментарий</span></a></span>
+									
+			
+					</footer><!-- #entry-meta -->
+</article><!-- #post --> 
+
+
+
+
+	<article class="post type-post status-publish format-standard hentry">
+		<header class="entry-header">
 						<h1 class="entry-title"><a href="../2013/03/08/blender-plan" title="Постоянная ссылка: План квартиры в Blender" rel="bookmark">План квартиры в Blender</a></h1>
 			
 						<div class="entry-meta">
@@ -177,113 +310,6 @@
 
 
 
-
-	<article class="post type-post status-publish format-standard hentry">
-		<header class="entry-header">
-						<h1 class="entry-title"><a href="../2012/09/06/mistake" title="Постоянная ссылка: Нашла ошибку в расчете" rel="bookmark">Нашла ошибку в расчете</a></h1>
-			
-						<div class="entry-meta">
-				<span class="sep">Опубликовано </span><a href="./2012/09/06/mistake" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-09-06T00:00:00+04:00" pubdate="">06.09.2012</time></a>	</div><!-- .entry-meta -->
-			
-					</header><!-- .entry-header -->
-
-				<div class="entry-content">
-				<p>После второго досрочного платежа различие в графиках достигло трех копеек, и я решила все-таки с этим разобраться. После некоторого времени бесполезных поисков наткнулась на одном из сайтов на ремарку, что если период между платежами находится на стыке високосного и невисокосного годов, то проценты рассчитываются отдельно за обычный и отдельно за високосный год. </p>
-
-<p>Соответственно, правильная формула расчета процентов по кредиту для этого случая такая: </p>
-
-<pre><code>П=i*O*К1*Г1+i*O*К2*Г2, 
-</code></pre>
-
-<p>где П - часть платежа, уходящая на выплату процентов, i - годовая процентная ставка, О - остаток долга, К1 - количество дней в периоде, приходящееся на старый год, Г1 - количество дней в старом году, К2 - количество дней в периоде, приходящееся на новый год, Г1 - количество дней в новом году. </p>
-
-<p>Каждое слагаемое округляется до двух знаков после запятой отдельно. Теперь все копейки сходятся.</p>
-
-</div>
-		<footer class="entry-meta">
-												<span class="cat-links">
-				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
-									
-			 <a href="tag/кредит/" rel="tag">кредит</a></span>
-			<span class="sep"> | </span>
-			<span class="comments-link"><a href="./2012/09/06/mistake/#disqus_thread" title="Прокомментировать запись «Нашла ошибку в расчете»"><span class="leave-reply">Добавить комментарий</span></a></span>
-									
-			
-					</footer><!-- #entry-meta -->
-</article><!-- #post --> 
-
-
-
-
-	<article class="post type-post status-publish format-standard hentry">
-		<header class="entry-header">
-						<h1 class="entry-title"><a href="../2012/07/15/paymentschedule" title="Постоянная ссылка: График платежей" rel="bookmark">График платежей</a></h1>
-			
-						<div class="entry-meta">
-				<span class="sep">Опубликовано </span><a href="./2012/07/15/paymentschedule" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-07-15T00:00:00+04:00" pubdate="">15.07.2012</time></a>	</div><!-- .entry-meta -->
-			
-					</header><!-- .entry-header -->
-
-				<div class="entry-content">
-				<p>Решила разобраться в принципе расчета графика платежей по кредиту. Когда при получении графика я попросила кредитного инспектора объяснить этот принцип, она ожидаемо сослалась на программу. И действительно, зачем им знать, как что рассчитывается, когда есть программа. Вот если бы ее еще заемщикам выдавали…
-По делу: формула самого аннуитетного (а у меня именно такие) платежа сложности не представляет. </p>
-
-<p>Вот она, собственно: </p>
-
-<pre><code>K=S*i/m/(1-(1+i/m)-k), 
-</code></pre>
-
-<p>где K - платеж, S - сумма кредита, i - годовой процент по кредиту, m - число платежных периодов в году, т. е. месяцев, k - полное количество платежных периодов. </p>
-
-<p>Дальше эта сумма делится на погашение долга и проценты за пользование кредитом. Здесь уже возникают некоторые сложности. </p>
-
-<p>Сначала я попробовала посчитать сумму процентов по годовой ставке, деленной на 12 (месяцев), но результат с графиком не сходился. Оказалось, нужно брать количество дней между платежами и делить на количество дней в году. Но здесь возникает проблема с високосным годом - в этом случае нужно сложить количество дней до конца месяца, деленное на количество дней в старом году и количество дней с начала месяца, деленное на количество дней в новом году. </p>
-
-<p>Теперь график платежей расходится на 1 копейку в январе 2017. Видимо, что-то где-то еще надо округлить. Но для примерного подсчета и планирования частичных досрочных погашений уже можно пользоваться. Проверено на новом графике после первого досрочного платежа. На нем, кстати, все суммы процентов совпадают.</p>
-
-</div>
-		<footer class="entry-meta">
-												<span class="cat-links">
-				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
-									
-			 <a href="tag/кредит/" rel="tag">кредит</a></span>
-			<span class="sep"> | </span>
-			<span class="comments-link"><a href="./2012/07/15/paymentschedule/#disqus_thread" title="Прокомментировать запись «График платежей»"><span class="leave-reply">Добавить комментарий</span></a></span>
-									
-			
-					</footer><!-- #entry-meta -->
-</article><!-- #post --> 
-
-
-
-
-	<article class="post type-post status-publish format-standard hentry">
-		<header class="entry-header">
-						<h1 class="entry-title"><a href="../2012/07/06/inspection" title="Постоянная ссылка: Инспекция" rel="bookmark">Инспекция</a></h1>
-			
-						<div class="entry-meta">
-				<span class="sep">Опубликовано </span><a href="./2012/07/06/inspection" title="00:00" rel="bookmark"><time class="entry-date" datetime="2012-07-06T00:00:00+04:00" pubdate="">06.07.2012</time></a>	</div><!-- .entry-meta -->
-			
-					</header><!-- .entry-header -->
-
-				<div class="entry-content">
-				<p>Посмотрела на дом. Мой пятый этаж (из десяти) уже построен. В марте, ровно 4 месяца назад, строился второй. Выглядит не как на картинке, конечно - окна пока не застеклены (в договоре содержится пункт о застеклении окон и лоджий).</p>
-
-</div>
-		<footer class="entry-meta">
-												<span class="cat-links">
-				<span class="entry-utility-prep entry-utility-prep-cat-links">Рубрика:</span> 		
-									
-			 <a href="tag/застройщик/" rel="tag">застройщик</a></span>
-			<span class="sep"> | </span>
-			<span class="comments-link"><a href="./2012/07/06/inspection/#disqus_thread" title="Прокомментировать запись «Инспекция»"><span class="leave-reply">Добавить комментарий</span></a></span>
-									
-			
-					</footer><!-- #entry-meta -->
-</article><!-- #post --> 
-
-
-
 			</div><!-- #content -->
 
 
@@ -310,15 +336,15 @@
 <div id="secondary" class="widget-area" role="complementary">
 					<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Свежие записи</h3>		<ul>
 					
+					<li><a href="/2014/03/09/tile-seams-kitchen" title="Затирка швов плитки в кухне">Затирка швов плитки в кухне</a></li>
+					
+					<li><a href="/2014/03/07/ceiling-3rd-colored" title="Окраска потолка">Окраска потолка</a></li>
+					
+					<li><a href="/2014/02/28/repair-floor-bathroom" title="Ремонт цементной стяжки">Ремонт цементной стяжки</a></li>
+					
 					<li><a href="/2014/02/16/ceramic-tile-kitchen" title="Укладывание напольной плитки в кухне">Укладывание напольной плитки в кухне</a></li>
 					
 					<li><a href="/2014/02/10/rate-reduction" title="Снижение ставки по кредиту">Снижение ставки по кредиту</a></li>
-					
-					<li><a href="/2014/01/28/tax-return-2013" title="Декларация-2013">Декларация-2013</a></li>
-					
-					<li><a href="/2014/01/25/waterproofing-kitchen" title="Гидроизоляция на кухне">Гидроизоляция на кухне</a></li>
-					
-					<li><a href="/2014/01/21/insurance" title="Страхование ипотеки">Страхование ипотеки</a></li>
 					
 				</ul>
 		</aside>
