@@ -1,0 +1,5 @@
+User-agent: Yandex 
+Disallow: /page 
+Disallow: /tag
+Disallow: /index.html
+Disallow: /readme.txt
