@@ -239,11 +239,10 @@ Calculate();
 }
 function OnBlurCalcData(s){  
 var n = s.defaultValue.length; 
-if (s.value!=s.defaultValue) {alert(s.defaultValue.length);
+if (s.value!=s.defaultValue) {
 	
 	RemoveOverPayCookie(); 
 	Calculate();}
-//if (n ==0) s.defaultValue=s.value;
 }
 function OnFocusCalcData(s){
 s.defaultValue = s.value;
